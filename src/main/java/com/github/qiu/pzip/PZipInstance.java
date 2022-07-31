@@ -42,21 +42,23 @@ public class PZipInstance {
         return words;
     }
 
-    public boolean accessible(long[] words, String name) {
+    public boolean accessible(long[] words, String name) throws PZipException{
         if (words[0] != version) {
-            System.err.println("version mismatch");
+            throw  new PZipException("version mismatch");
         }
         int index = nameIndexMap.get(name);
         return (words[(index >> 6) + 1] & 1L << (index % 64)) != 0;
     }
 
-    public List<String> listAccessiblePermit(long[] words) {
+    public List<String> listAccessiblePermit(long[] words) throws PZipException {
         List<String> permitList = new LinkedList<>();
-        nameIndexMap.forEach((key, value) -> {
+        for (Map.Entry<String, Integer> entry : nameIndexMap.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
             if (accessible(words, key)) {
                 permitList.add(key);
             }
-        });
+        }
         return permitList;
     }
 }

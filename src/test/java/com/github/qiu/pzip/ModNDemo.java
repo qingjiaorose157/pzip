@@ -8,7 +8,7 @@ public class ModNDemo {
     /**
      * a demo to record number(from 0 to 9999) can de divide by 3
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         /**
          * init all permit

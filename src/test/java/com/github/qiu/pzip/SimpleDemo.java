@@ -4,7 +4,7 @@ package com.github.qiu.pzip;
 import java.util.Arrays;
 
 public class SimpleDemo {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         /**
          * a simple demo to record permit on crud
